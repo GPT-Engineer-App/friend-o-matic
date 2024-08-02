@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import NavBar from '@/components/NavBar';
 
 const fetchUsers = async () => {
   const response = await axios.get('https://randomuser.me/api/?results=20');
@@ -20,9 +20,11 @@ const Index = () => {
   if (isError) return <div className="flex justify-center items-center h-screen">Error fetching users</div>;
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold mb-8 text-center">Friends List</h1>
-      <Card className="w-full max-w-3xl mx-auto">
+    <div className="min-h-screen bg-gray-100">
+      <NavBar />
+      <div className="p-8">
+        <h1 className="text-4xl font-bold mb-8 text-center">Friends List</h1>
+        <Card className="w-full max-w-3xl mx-auto">
         <CardContent className="p-6">
           <ScrollArea className="h-[70vh]">
             {users.map((user) => (
@@ -40,6 +42,7 @@ const Index = () => {
           </ScrollArea>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 };
