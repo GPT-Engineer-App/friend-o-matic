@@ -10,7 +10,7 @@ const fetchUsers = async () => {
   return response.data.results;
 };
 
-const Index = () => {
+export default function Home() {
   const { data: users, isLoading, isError } = useQuery({
     queryKey: ['users'],
     queryFn: fetchUsers,
@@ -45,6 +45,4 @@ const Index = () => {
       </div>
     </div>
   );
-};
-
-export default Index;
+}
